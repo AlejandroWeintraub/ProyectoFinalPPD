@@ -1,125 +1,69 @@
 import 'package:flutter/material.dart';
+import 'extensiones.dart';
 
-void main() {
-  runApp(const MyApp());
-}
+void main() => runApp(Main());
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+const Map<String, double> sackleaders = {
+  'Myles Garret': 13,
+  'Danielle Hunter': 12,
+  'T.J. Watt': 11.5,
+  'Khalil Mack': 11.5,
+  'Maxx Crosby': 10.5,
+  'Kayvon Thibodeaux': 10.5,
+  'Micah Parsons': 10,
+  'Josh Allen': 9.5,
+  'Trey Hendrickson': 9.5,
+  'Leonard Floyd': 9.5,
+  'Justin Madubuike': 9.5,
+  'Win a Prize': 0,
+};
 
-  // This widget is the root of your application.
+class Main extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a purple toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: PrincipalView(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
-
+class PrincipalView extends StatefulWidget {
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  PrincipalViewState createState() => PrincipalViewState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
-
+class PrincipalViewState extends State<PrincipalView> {
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
     return Scaffold(
-      appBar: AppBar(
-        // TRY THIS: Try changing the color here to a specific color (to
-        // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
-        // change color while the other colors stay the same.
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          //
-          // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
-          // action in the IDE, or press "p" in the console), to see the
-          // wireframe for each widget.
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
+        appBar: AppBar(
+          title: Text('NFL Sack Leaders'),
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+        body: ListView(children: [
+          easyListTile('assets/vikings.png', 'Myles Garrett', '13.0', '1'),
+          easyListTile('assets/vikings.png', 'Danielle Hunter', '12.0', '2'),
+          easyListTile('assets/vikings.png', 'T.J. Watt', '11.5', '3'),
+          easyListTile('assets/vikings.png', 'Khalil Mack', '11.5', '4'),
+          easyListTile('assets/vikings.png', 'Maxx Crosby', '10.5', '5'),
+          easyListTile('assets/vikings.png', 'Kayvon Thibodeaux', '10.5', '6'),
+          easyListTile('assets/vikings.png', 'Micah Parsons', '10.0', '7'),
+          easyListTile('assets/vikings.png', 'Josh Allen', '9.5', '8'),
+          easyListTile('assets/vikings.png', 'Trey Hendrickson', '9.5', '9'),
+          easyListTile('assets/vikings.png', 'Leonard Floyd', '9.5', '10'),
+          easyListTile('assets/vikings.png', 'Justin Madubuike', '9.5', '11'),
+        ]));
+  }
+}
+
+class DetailPage extends StatelessWidget {
+  Widget build(BuildContext context) {
+    String playerName = ModalRoute.of(context)?.settings.arguments as String;
+    return Scaffold(
+      appBar: AppBar(title: Text(playerName)),
     );
   }
 }
+
+
+
+
