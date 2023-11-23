@@ -3,26 +3,72 @@ import 'extensiones.dart';
 
 void main() => runApp(Main());
 
-const Map<String, double> sackleaders = {
-  'Myles Garret': 13,
-  'Danielle Hunter': 12,
-  'T.J. Watt': 11.5,
-  'Khalil Mack': 11.5,
-  'Maxx Crosby': 10.5,
-  'Kayvon Thibodeaux': 10.5,
-  'Micah Parsons': 10,
-  'Josh Allen': 9.5,
-  'Trey Hendrickson': 9.5,
-  'Leonard Floyd': 9.5,
-  'Justin Madubuike': 9.5,
-  'Win a Prize': 0,
-};
+const List<String> titles = [
+  'Myles Garret',
+  'Danielle Hunter',
+  'T.J. Watt',
+  'Khalil Mack',
+  'Maxx Crosby',
+  'Kayvon Thibodeaux',
+  'Micah Parsons',
+  'Josh Allen',
+  'Trey Hendrickson',
+  'Leonard Floyd',
+  'Justin Madubuike',
+  'Win a Prize',
+];
+
+const List<String> ranking = [
+  '1',
+  '2',
+  '3',
+  '4',
+  'T5',
+  'T5',
+  '7',
+  'T8',
+  'T8',
+  'T8',
+  'T8',
+  '',
+];
+
+const List<String> sacks = [
+  '13.0',
+  '12.0',
+  '11.5',
+  '11.0',
+  '10.5',
+  '10.5',
+  '10.0',
+  '9.5',
+  '9.5',
+  '9.5',
+  '9.5',
+  '',
+];
+
+const List<String> teams = [
+  'assets/browns.png',
+  'assets/vikings.png',
+  'assets/steelers.png',
+  'assets/chargers.png',
+  'assets/raiders.png',
+  'assets/giants.png',
+  'assets/dallas.png',
+  'assets/jaguars.png',
+  'assets/bengals.png',
+  'assets/bills.png',
+  'assets/ravens.png',
+  'assets/prize.png',
+];
 
 class Main extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: PrincipalView(),
+      theme: ThemeData.dark(),
     );
   }
 }
@@ -38,20 +84,30 @@ class PrincipalViewState extends State<PrincipalView> {
     return Scaffold(
         appBar: AppBar(
           title: Text('NFL Sack Leaders'),
+          backgroundColor: Colors.grey[900],
         ),
-        body: ListView(children: [
-          easyListTile('assets/vikings.png', 'Myles Garrett', '13.0', '1'),
-          easyListTile('assets/vikings.png', 'Danielle Hunter', '12.0', '2'),
-          easyListTile('assets/vikings.png', 'T.J. Watt', '11.5', '3'),
-          easyListTile('assets/vikings.png', 'Khalil Mack', '11.5', '4'),
-          easyListTile('assets/vikings.png', 'Maxx Crosby', '10.5', '5'),
-          easyListTile('assets/vikings.png', 'Kayvon Thibodeaux', '10.5', '6'),
-          easyListTile('assets/vikings.png', 'Micah Parsons', '10.0', '7'),
-          easyListTile('assets/vikings.png', 'Josh Allen', '9.5', '8'),
-          easyListTile('assets/vikings.png', 'Trey Hendrickson', '9.5', '9'),
-          easyListTile('assets/vikings.png', 'Leonard Floyd', '9.5', '10'),
-          easyListTile('assets/vikings.png', 'Justin Madubuike', '9.5', '11'),
-        ]));
+        body: Container(
+          child: ListView.separated(
+              itemCount: titles.length,
+              separatorBuilder: (BuildContext context, int index) =>
+                  const Divider(),
+              itemBuilder: (context, index) {
+                return ListTile(
+                  leading: Text(ranking[index], textScaler: TextScaler.linear(1.5), ),
+                  title: Row(children: [Image(
+                    image: AssetImage(teams[index]),
+                    width: 32,
+                    height: 32,
+                  ),SizedBox(width: 10,) ,Text(titles[index])]),
+                  trailing: Text(
+                    sacks[index],
+                    textScaler: TextScaler.linear(1.5),
+                  textAlign: TextAlign.center
+                  ),
+                  onTap: () => goToDetailPage(titles[index]),
+                );
+              }),
+        ));
   }
 }
 
@@ -63,7 +119,3 @@ class DetailPage extends StatelessWidget {
     );
   }
 }
-
-
-
-
