@@ -4,29 +4,30 @@ import 'main.dart';
 
 
 extension MorePlayerInfo on PrincipalViewState {
-  goToDetailPage(String playerName) {
+  goToDetailPage(String playerName, String playerImage) {
     Navigator.push(
         context,
-        MaterialPageRoute(
-            builder: (context) => DetailPage(),
-            settings: RouteSettings(arguments: playerName)));
+        
+        PageRouteBuilder(
+            pageBuilder: (context, animation, secondaryAnimation) => DetailPage(),
+            transitionDuration: Duration(milliseconds: 200),
+            transitionsBuilder: (context, animation, secondaryAnimation, child){
+              return SlideTransition(
+                position: Tween<Offset>(
+                  begin: Offset(1.0, 0.0),
+                end: Offset(0.0, 0.0),
+        ).animate(animation),
+                child: child,
+              );
+                
+            },
+            settings: RouteSettings(arguments: [playerName, playerImage])
+            
+            )
+            );
+            
   }
 
 
-Widget easyListTile(
-    String asset, String playerName, String Sacks, String ranking) {
-  return ListTile(
-    title: Row(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
-      children: [
-        Text('$ranking |'),
-        Image(image: AssetImage(asset), width: 32),
-        Text(playerName),
-        Text(' $Sacks '),
-      ],
-    ),
-    onTap: () => goToDetailPage(playerName),
-  );
-}
 
 }
