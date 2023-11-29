@@ -62,73 +62,76 @@ Widget PortraitContactForm(BuildContext context) {
     fechaController.dispose();
   }
 
-  return Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          TextFormField(
-            decoration: InputDecoration(
-              icon: Icon(Icons.account_box),
-              labelText: 'Nombre Completo',
-            ),
-            keyboardType: TextInputType.text,
-            controller: nombreController,
-          ),
-          TextFormField(
-            decoration: InputDecoration(
-              icon: Icon(Icons.workspace_premium),
-              labelText: 'Quien del top 10 de Sacks es tu favorito?',
-            ),
-            keyboardType: TextInputType.text,
-            controller: jugadorController,
-          ),
-          TextFormField(
-            decoration: InputDecoration(
-              icon: Icon(Icons.account_box),
-              labelText: 'Edad',
-            ),
-            keyboardType: TextInputType.number,
-            controller: edadController,
-          ),
-          TextFormField(
-            decoration: InputDecoration(
-              icon: Icon(Icons.account_box),
-              labelText: 'Numero de telefono',
-            ),
-            keyboardType: TextInputType.phone,
-            controller: telefonoController,
-          ),
-          TextFormField(
-            decoration: InputDecoration(
-              icon: Icon(Icons.account_box),
-              labelText: 'Fecha de Hoy',
-            ),
-            keyboardType: TextInputType.datetime,
-            controller: fechaController,
-          ),
-          ElevatedButton(
-            onPressed: () {
-              showDialog(
-                  context: context,
-                  builder: (context) {
-                    return AlertDialog(
-                      title: Text('Informacion de la cuenta'),
-                      content: Column(
-                        children: [
-                          Text('Nombre: ${nombreController.text}'),
-                          Text('Jugador Favorito: ${jugadorController.text}'),
-                          Text('Edad: ${edadController.text}'),
-                          Text('Teléfono: ${telefonoController.text}'),
-                          Text('Fecha de hoy: ${fechaController.text}'),
-                        ],
-                      ),
-                    );
-                  });
-            },
-            child: Text('Enviar'),
-          )
-        ],
-      ));
+  return SingleChildScrollView(
+      child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              TextFormField(
+                decoration: InputDecoration(
+                  icon: Icon(Icons.account_box),
+                  labelText: 'Nombre Completo',
+                ),
+                keyboardType: TextInputType.text,
+                controller: nombreController,
+              ),
+              TextFormField(
+                decoration: InputDecoration(
+                  icon: Icon(Icons.workspace_premium),
+                  labelText: 'Quien del top 10 de Sacks es tu favorito?',
+                ),
+                keyboardType: TextInputType.text,
+                controller: jugadorController,
+              ),
+              TextFormField(
+                decoration: InputDecoration(
+                  icon: Icon(Icons.account_box),
+                  labelText: 'Edad',
+                ),
+                keyboardType: TextInputType.number,
+                controller: edadController,
+              ),
+              TextFormField(
+                decoration: InputDecoration(
+                  icon: Icon(Icons.account_box),
+                  labelText: 'Numero de telefono',
+                ),
+                keyboardType: TextInputType.phone,
+                controller: telefonoController,
+              ),
+              TextFormField(
+                decoration: InputDecoration(
+                  icon: Icon(Icons.account_box),
+                  labelText: 'Fecha de Hoy',
+                ),
+                keyboardType: TextInputType.datetime,
+                controller: fechaController,
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  showDialog(
+                      context: context,
+                      builder: (context) {
+                        return AlertDialog(
+                          title: Text('Informacion de la cuenta'),
+                          content: Column(
+                            children: [
+                              Text('Nombre: ${nombreController.text}'),
+                              Text(
+                                  'Jugador Favorito: ${jugadorController.text}'),
+                              Text('Edad: ${edadController.text}'),
+                              Text('Teléfono: ${telefonoController.text}'),
+                              Text('Fecha de hoy: ${fechaController.text}'),
+                            ],
+                          ),
+                        );
+                      });
+                },
+                child: Text('Enviar'),
+              )
+            ],
+          )));
 }
 
 Widget LandscapeContactForm(BuildContext context) {
@@ -147,7 +150,8 @@ Widget LandscapeContactForm(BuildContext context) {
     fechaController.dispose();
   }
 
-  return Column(
+  return SingleChildScrollView(
+      child: Column(
     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
     children: [
       Row(
@@ -222,7 +226,10 @@ Widget LandscapeContactForm(BuildContext context) {
           ),
         ],
       ),
-      Row(mainAxisAlignment: MainAxisAlignment.center,children: [ElevatedButton(
+      Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          ElevatedButton(
             onPressed: () {
               showDialog(
                   context: context,
@@ -242,7 +249,9 @@ Widget LandscapeContactForm(BuildContext context) {
                   });
             },
             child: Text('Enviar'),
-          )],)
+          )
+        ],
+      )
     ],
-  );
+  ));
 }

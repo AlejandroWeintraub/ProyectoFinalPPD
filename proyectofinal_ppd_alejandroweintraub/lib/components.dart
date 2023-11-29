@@ -1,7 +1,20 @@
 import 'package:flutter/material.dart';
 import 'extensiones.dart';
+import 'main.dart';
 
-
+ Widget buildPositionedWidget( String x, AnimationController y) {
+    int intValue = y.value.toInt();
+    return Positioned(
+      left: 150,
+        top: y.value,
+      child: Image.asset(
+            x,
+            width: (20 * ScreenWidth / 100),
+            height: (20 * ScreenWidth / 100),
+          ),
+        
+      );
+  }
 
 Card miCardImagePortrait(String label, num stat) {
   return Card(

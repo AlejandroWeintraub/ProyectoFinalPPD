@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'extensiones.dart';
 import 'InformationLists.dart';
@@ -29,10 +27,7 @@ class PrincipalViewState extends State<PrincipalView>
   late Animation animation;
   late AnimationController controller;
  
- Animation<double> getAnimation(AnimationController controller) {
-    return Tween(begin: 0.0, end: 1.0).animate(controller)
-      ..addListener(() { setState(() {}); });
-  }
+ 
   @override
   void initState() {
     super.initState();
@@ -87,7 +82,8 @@ class PrincipalViewState extends State<PrincipalView>
                           teams[index],
                           careerStats[index],
                           playerInfo[index],
-                          favorites[index]);
+                          favorites[index],
+                          controller);
                     } else {
                       goToContactPage(titles[index]);
                     }
