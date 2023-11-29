@@ -4,24 +4,16 @@ import 'main.dart';
 import 'components.dart';
 
 extension MorePlayerInfo on PrincipalViewState {
-  Animation getAnimation(AnimationController controller) {
-    return Tween(begin: 100.0, end: 500.0).animate(
-      CurvedAnimation(parent: controller, curve: Curves.easeOut),
-    )..addListener(() {
-        setState(() {});
-      });
-  }
-
   static bool _isFavorite = false;
   goToDetailPage(
-      int index,
-      String playerName,
-      String playerImage,
-      String teams,
-      List<num> stats,
-      String playerInfo,
-      bool _isFavorite2,
-      AnimationController controller) async {
+    int index,
+    String playerName,
+    String playerImage,
+    String teams,
+    List<num> stats,
+    String playerInfo,
+    bool _isFavorite2,
+  ) async {
     _isFavorite = await Navigator.push(
             context,
             PageRouteBuilder(
@@ -45,7 +37,6 @@ extension MorePlayerInfo on PrincipalViewState {
                   _isFavorite2,
                   stats,
                   playerInfo,
-                  controller
                 ]))) ??
         _isFavorite;
     setState(() {

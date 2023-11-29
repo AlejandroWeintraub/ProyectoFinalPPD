@@ -32,6 +32,21 @@ const List<String> titles = [
   'Create an account',
 ];
 
+const List<String> description = [
+  '''Defensive End - Cleveland Browns''',
+  '''Defensive End - Minnesota Vikings''',
+  '''Outside Linebacker - Pittsburgh Steelers''',
+  '''Outside Linebacker - Los Angeles Chargers''',
+  '''Defensive End - Las Vegas Raiders''',
+  '''Defensive End - New York Giants''',
+  '''Linebacker- Dallas Cowboys''',
+  '''Defensive End - Jacksonville Jaguars''',
+  '''Defensive End - Cincinnati Bengals''',
+  '''Linebacker - Los Angeles Rams''',
+  '''Defensive Tackle - Baltimore Ravens''',
+''
+];
+
 const List<String> ranking = [
   '1',
   '2',
